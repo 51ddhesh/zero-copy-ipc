@@ -40,4 +40,21 @@ inline constexpr bool is_power_of_two(std::size_t n) noexcept {
     return n > 0 && (n & (n - 1)) == 0;
 }
 
+// Hardware Timestamps
+// RDTSC: ~1 ns of overhead, not serializing
+// use for stamping messages on hot path (producer side)
+inline uint64_t rdtsc() noexcept {
+    uint32_t lo, hi;
+    __asm__ __volatile__("rdtsc" : "=a"(lo), "=d"(hi));
+    return (static_cast<uint64_t>(hi) << 32) | lo;
+}
+
+// RDTSCP: serializing - waits for prior instructions to retire
+// use on measurement/consumer side for accurate timing
+inline uint64_t rdtscp() noexcept {
+    uint32_t lo, hi, aux;
+    __asm__ __volatile__("rdtscp" : "=a"(lo), "=d"(hi), "=c"(aux));
+    return (static_cast<uint64_t>(hi) << 32) | lo;
+}
+
 } // namespace z_ipc
