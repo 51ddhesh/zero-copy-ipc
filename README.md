@@ -6,13 +6,22 @@ WIP...
 
 ### Run Tests
 
-- Test the shared region
-
+- Build
 ```bash
 mkdir -p build
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j$(nproc)
+```
+
+- Test the shared region
+
+```bash
 ./build/tests/test_shared_region
+```
+
+- Test the Single Producer Single Consumer Queue (`SPSCQueue`)
+```bash
+./build/tests/test_spsc_queue
 ```
 
 ### NOTICE
