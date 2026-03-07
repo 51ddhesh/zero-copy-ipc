@@ -1,0 +1,3 @@
+add_executable(benchmark_spsc_queue benchmark_spsc_queue.cpp)
+target_link_libraries(benchmark_spsc_queue PRIVATE ipc)
+target_compile_options(benchmark_spsc_queue PRIVATE -O3 -march=native)

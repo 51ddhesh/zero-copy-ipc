@@ -28,3 +28,8 @@ if (IPC_BUILD_TESTS)
     enable_testing()
     add_subdirectory(tests)
 endif()
+
+option(IPC_BUILD_BENCH "Build benchmarks" ON)
+if (IPC_BUILD_BENCH)
+    add_subdirectory(benchmarks)
+endif()
