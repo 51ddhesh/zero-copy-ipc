@@ -10,3 +10,7 @@ FetchContent_MakeAvailable(googletest)
 add_executable(test_shared_region test_shared_region.cpp)
 target_link_libraries(test_shared_region PRIVATE ipc GTest::gtest_main)
 add_test(NAME SharedRegionTests COMMAND test_shared_region)
+
+add_executable(test_spsc_queue test_spsc_queue.cpp)
+target_link_libraries(test_spsc_queue PRIVATE ipc GTest::gtest_main)
+add_test(NAME SPSCQueueTests COMMAND test_spsc_queue)
